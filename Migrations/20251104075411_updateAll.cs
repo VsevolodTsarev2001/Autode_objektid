@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Autode_objektid.Migrations
 {
     /// <inheritdoc />
-    public partial class addedAddress : Migration
+    public partial class updateAll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

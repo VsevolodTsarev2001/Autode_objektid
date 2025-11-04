@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Autode_objektid.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251029091656_addedGarage")]
-    partial class addedGarage
+    [Migration("20251104075411_updateAll")]
+    partial class updateAll
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

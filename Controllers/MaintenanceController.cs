@@ -12,6 +12,16 @@ namespace Autode_objektid.Controllers
         private readonly AppDbContext _db;
         public MaintenanceController(AppDbContext db) => _db = db;
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, MaintenanceRecord m)
+        {
+            if (id != m.Id) return BadRequest();
+            _db.Entry(m).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
+
         [HttpGet]
         public async Task<IEnumerable<MaintenanceRecord>> Get([FromQuery] int? carId, [FromQuery] DateTime? from, [FromQuery] DateTime? to)
         {

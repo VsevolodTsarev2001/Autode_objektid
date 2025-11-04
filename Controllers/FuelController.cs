@@ -22,8 +22,20 @@ namespace Autode_objektid.Controllers
             return await q.OrderByDescending(x => x.Date).ToListAsync();
         }
 
-        [HttpPost] public async Task<ActionResult<FuelLog>> Post(FuelLog f) { _db.FuelLogs.Add(f); await _db.SaveChangesAsync(); return CreatedAtAction(nameof(Get), new { carId = f.CarId }, f); }
-        [HttpDelete("{id}")] public async Task<IActionResult> Delete(int id) { var f = await _db.FuelLogs.FindAsync(id); if (f == null) return NotFound(); _db.FuelLogs.Remove(f); await _db.SaveChangesAsync(); return NoContent(); }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, FuelLog f)
+        {
+            if (id != f.Id) return BadRequest();
+            _db.Entry(f).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
+
+        [HttpPost] 
+        public async Task<ActionResult<FuelLog>> Post(FuelLog f) { _db.FuelLogs.Add(f); await _db.SaveChangesAsync(); return CreatedAtAction(nameof(Get), new { carId = f.CarId }, f); }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id) { var f = await _db.FuelLogs.FindAsync(id); if (f == null) return NotFound(); _db.FuelLogs.Remove(f); await _db.SaveChangesAsync(); return NoContent(); }
 
         // summary liters & cost for car in interval
         [HttpGet("summary")]
